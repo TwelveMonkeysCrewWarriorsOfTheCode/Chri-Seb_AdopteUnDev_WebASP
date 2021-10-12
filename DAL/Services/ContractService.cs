@@ -38,5 +38,35 @@ namespace DAL.Services
 				return JsonConvert.DeserializeObject<IEnumerable<ContractModelDAL>>(json);
 			}
 		}
+
+		public IEnumerable<ContractModelDAL> GetContractAcceptedByDev(int id)
+		{
+			using (HttpResponseMessage message = _client.GetAsync("/api/Contract/GetContractAcceptedByDev/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+
+				string json = message.Content.ReadAsStringAsync().Result;
+
+				return JsonConvert.DeserializeObject<IEnumerable<ContractModelDAL>>(json);
+			}
+		}
+
+		public IEnumerable<ContractModelDAL> GetContractIssuedByClient(int id)
+		{
+			using (HttpResponseMessage message = _client.GetAsync("/api/Contract/GetContractIssuedByClient/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+
+				string json = message.Content.ReadAsStringAsync().Result;
+
+				return JsonConvert.DeserializeObject<IEnumerable<ContractModelDAL>>(json);
+			}
+		}
 	}
 }

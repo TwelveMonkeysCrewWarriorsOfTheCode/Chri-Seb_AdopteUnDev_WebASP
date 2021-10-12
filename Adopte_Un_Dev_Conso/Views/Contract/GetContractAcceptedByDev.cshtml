@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Adopte_Un_Dev_Conso.Models.ContractModel>
+
+@{
+    ViewData["Title"] = "Liste de mes Contrats";
+}
+
+<h1>Liste de mes Contrats</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeadLine)
+            </th>
+            <th>
+                Client
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
