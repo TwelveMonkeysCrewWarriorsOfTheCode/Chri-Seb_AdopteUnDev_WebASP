@@ -28,13 +28,13 @@
                 <label for="floatingPassword">Password</label>
             </div>
 
-            <div class="checkbox mb-3">
+            <div class="checkbox d-flex justify-content-start py-2">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit" asp-area="" asp-controller="User" asp-action="Login">Sign in</button>
-		<button class="w-100 btn btn-lg btn-outline-primary form-signon" type="button" value="Redirect" onclick="window.location='@Url.Action("Register", "User")'">Sign on</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" asp-area="" asp-controller="User" asp-action="Login">Login</button>
+		<button class="w-100 btn btn-lg btn-outline-primary form-signon" type="button" value="Redirect" onclick="window.location='@Url.Action("Register", "User")'">Sign-up</button>
 
         </form>
     </main>
