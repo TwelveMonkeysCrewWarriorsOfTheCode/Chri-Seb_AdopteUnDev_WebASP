@@ -1,0 +1,41 @@
+﻿@model Adopte_Un_Dev_Conso.Models.LoginUserModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+
+<div class="text-center div-body-form-signin">
+
+    <main class="form-signin">
+        <form asp-action="Login">
+            <p class="lh-1 fs-5">
+                Plate-forme de mise en relation
+            </p>
+            <p class="lh-1 fs-3">
+                Développeurs - Clients
+            </p>
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input type="email" asp-for="Email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" asp-for="Password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" asp-area="" asp-controller="User" asp-action="Login">Sign in</button>
+		<button class="w-100 btn btn-lg btn-outline-primary form-signon" type="button" value="Redirect" onclick="window.location='@Url.Action("Register", "User")'">Sign on</button>
+
+        </form>
+    </main>
+</div>
