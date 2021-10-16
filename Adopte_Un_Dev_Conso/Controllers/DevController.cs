@@ -18,7 +18,6 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			return View();
 		}
 
-
 		public IActionResult GetDevById()
 		{
 			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == false)
