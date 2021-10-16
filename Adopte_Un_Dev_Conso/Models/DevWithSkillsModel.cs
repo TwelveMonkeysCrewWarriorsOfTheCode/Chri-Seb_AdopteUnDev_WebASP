@@ -6,6 +6,7 @@ namespace Adopte_Un_Dev_Conso.Models
 	{
 		public UserDevModel Dev { get; set; }
 		public IEnumerable<SkillModel> ListSkills { get; set; }
-		public IEnumerable<UserSkills> UserSkills { get; set; }
+		public IEnumerable<UserSkillsModel> UserSkills { get; set; }
+		public IEnumerable<CategoryModel> Categories { get; set; }
 	}
 }
