@@ -82,5 +82,52 @@ namespace DAL.Services
 				return JsonConvert.DeserializeObject<IEnumerable<UserDevModelDAL>>(json);
 			}
 		}
+
+		public bool InsertUserSkill(AddUserSkillDAL u)
+		{
+			string jsonBody = JsonConvert.SerializeObject(u);
+
+			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
+			{
+				using (HttpResponseMessage message = _client.PostAsync("api/User/InsertUserSkill", content).Result)
+				{
+					if (!message.IsSuccessStatusCode)
+					{
+						throw new HttpRequestException();
+					}
+					return true;
+				}
+			}
+		}
+
+		public IEnumerable<UserSkillsDAL> GetUserSkillUserId(int id)
+		{
+			using (HttpResponseMessage message = _client.GetAsync("/api/User/GetUserSkillUserId/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+
+				string json = message.Content.ReadAsStringAsync().Result;
+
+				return JsonConvert.DeserializeObject<IEnumerable<UserSkillsDAL>>(json);
+			}
+		}
+
+		public UserDevModelDAL GetUserById(int id)
+		{
+			using (HttpResponseMessage message = _client.GetAsync("/api/User/GetById/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+
+				string json = message.Content.ReadAsStringAsync().Result;
+
+				return JsonConvert.DeserializeObject<UserDevModelDAL>(json);
+			}
+		}
 	}
 }

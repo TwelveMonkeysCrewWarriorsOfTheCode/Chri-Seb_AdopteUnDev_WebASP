@@ -1,15 +1,22 @@
-﻿@*
-@inject Global.UserConnected;
-@model Global
-*@
-@if (Global.UserConnected.UserId != null)
+﻿@if (Global.UserConnected.UserId != null)
 {
-	<div class="list-group-horizontal">
-	<span class="nav-link" asp-area="Identity" >Hello @Global.UserConnected.Email</span>
-
-	<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-	 <button type="submit" class="nav-link btn btn-link px-3">Logout</button>
-	</form>
+	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+	<div class="container d-flex flex-wrap justify-content-end">
+	 <ul class="nav nav-pills">
+	  <li class="nav-item">
+	   <span class="nav-link btn btn-link px-3 text-white" asp-area="Identity">@Global.UserConnected.Email</span>
+	  </li>
+	  <li class="nav-item">
+	   <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+	
+		<span type="button" class="nav-link btn btn-link px-3 a-Clickable" value="Redirect" onclick="window.location='@Url.Action("Logout", "Home")'">
+		 Logout
+		</span>
+	   </form>
+	  </li>
+	 </ul>
 	</div>
 }
 else

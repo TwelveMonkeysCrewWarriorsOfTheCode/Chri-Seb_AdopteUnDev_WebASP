@@ -42,5 +42,11 @@ namespace Adopte_Un_Dev_Conso.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+
+		public IActionResult Logout()
+		{
+			Global.UserConnected.Clear();
+			return RedirectToAction("Index", "Home");
+		}
 	}
 }

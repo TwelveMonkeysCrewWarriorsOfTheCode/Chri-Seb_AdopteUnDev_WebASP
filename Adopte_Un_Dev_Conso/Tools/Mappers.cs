@@ -70,5 +70,25 @@ namespace Adopte_Un_Dev_Conso.Tools
 				UName = c.UName
 			};
 		}
+
+		public static AddUserSkillDAL MapToUserSkill(this AddUserSkillModel u)
+		{
+			return new AddUserSkillDAL
+			{
+				UserID = u.UserID,
+				SkillID = u.SkillID
+			};
+		}
+
+		public static UserDevModel MapToUserDev(this UserDevModelDAL u)
+		{
+			return new UserDevModel
+			{
+				UserID = u.UserID,
+				Name = u.Name,
+				Email = u.Email,
+				Telephone = u.Telephone
+			};
+		}
 	}
 }
