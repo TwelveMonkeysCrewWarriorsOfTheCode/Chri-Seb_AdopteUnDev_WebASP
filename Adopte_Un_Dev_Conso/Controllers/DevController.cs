@@ -30,5 +30,18 @@ namespace Adopte_Un_Dev_Conso.Controllers
 				return RedirectToAction("Index", "Home");
 			}
 		}
+
+
+		public IActionResult GetDevWithSkillsModel()
+		{
+			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == false)
+			{
+				return View(_userService.GetDevs().Select(d => d.MapToUserModel()));
+			}
+			else
+			{
+				return RedirectToAction("Index", "home");
+			}
+		}
 	}
 }

@@ -2,9 +2,12 @@
 
 namespace Adopte_Un_Dev_Conso.Models
 {
-	public class DevWithSkillsModel
+	public class UserDevWithSkillsModel
 	{
-		public UserDevModel Dev { get; set; }
+		public int UserID { get; set; }
+		public string Name { get; set; }
+		public string Email { get; set; }
+		public string Telephone { get; set; }
 		public IEnumerable<SkillModel> ListSkills { get; set; }
 		public IEnumerable<UserSkills> UserSkills { get; set; }
 	}
