@@ -117,7 +117,7 @@ namespace DAL.Services
 
 		public UserDevModelDAL GetUserById(int id)
 		{
-			using (HttpResponseMessage message = _client.GetAsync("/api/User/GetById/" + id).Result)
+			using (HttpResponseMessage message = _client.GetAsync("/api/User/GetUserById/" + id).Result)
 			{
 				if (!message.IsSuccessStatusCode)
 				{
