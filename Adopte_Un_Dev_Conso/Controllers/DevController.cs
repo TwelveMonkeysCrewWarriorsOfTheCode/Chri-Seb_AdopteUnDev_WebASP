@@ -42,8 +42,10 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == false)
 			{
 				UserDevModel userDev = _devService.GetUserById((int)Global.UserConnected.UserId).MapToUserDev();
-				userDev.UserSkills = _devService.GetUserSkillUserId((int)Global.UserConnected.UserId).Select(us => us.MapToUserSkill()).ToList();
-				return View();
+				userDev.UserSkills = _devService.GetUserSkillUserId((int)Global.UserConnected.UserId).Select(us => us.MapToUserSkill());
+				userDev.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
+				//userDev.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel()).ToList(); // ToList si foreach
+				return View(userDev);
 			}
 			else
 			{
