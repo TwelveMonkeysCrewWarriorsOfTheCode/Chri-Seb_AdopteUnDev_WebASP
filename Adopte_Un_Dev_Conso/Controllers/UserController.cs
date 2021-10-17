@@ -89,5 +89,18 @@ namespace Adopte_Un_Dev_Conso.Controllers
 
 			return View(form);
 		}
+
+
+		public IActionResult GetUserSkillUserId()
+		{
+			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == true)
+			{
+				return View(_userService.GetUserSkillUserId((int)Global.UserConnected.UserId).Select(us => us.MapToUserSkill()));
+			}
+			else
+			{
+				return RedirectToAction("Index", "home");
+			}
+		}
 	}
 }

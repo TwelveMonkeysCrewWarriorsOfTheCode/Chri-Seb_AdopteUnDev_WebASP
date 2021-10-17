@@ -90,5 +90,15 @@ namespace Adopte_Un_Dev_Conso.Tools
 				Telephone = u.Telephone
 			};
 		}
+
+		public static UserSkills MapToUserSkill(this UserSkillsDAL us)
+		{
+			return new UserSkills
+			{
+				UserSkillID = us.UserSkillID,
+				UserID = us.UserID,
+				SkillID = us.SkillID
+			};
+		}
 	}
 }
