@@ -97,7 +97,9 @@ namespace Adopte_Un_Dev_Conso.Tools
 			{
 				UserSkillID = us.UserSkillID,
 				UserID = us.UserID,
-				SkillID = us.SkillID
+				SkillID = us.SkillID,
+				SkillName = us.SkillName,
+				CName = us.CName
 			};
 		}
 	}

@@ -45,11 +45,11 @@
                 @*@Html.DisplayNameFor(model => model.UserSkillID)*@
             </th>
             <th>
-				UserID
+				Skill
                 @*@Html.DisplayNameFor(model => model.UserID)*@
             </th>
             <th>
-				SkillID
+				Category
                 @*@Html.DisplayNameFor(model => model.SkillID)*@
             </th>
             <th></th>
@@ -62,10 +62,10 @@
                 @Html.DisplayFor(modelItem => item.UserSkillID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserID)
+                @Html.DisplayFor(modelItem => item.SkillName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SkillID)
+                @Html.DisplayFor(modelItem => item.CName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
