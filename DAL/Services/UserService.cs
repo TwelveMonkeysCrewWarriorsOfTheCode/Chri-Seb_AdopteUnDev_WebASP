@@ -89,7 +89,7 @@ namespace DAL.Services
 
 			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
 			{
-				using (HttpResponseMessage message = _client.PostAsync("api/User/InsertUserSkill", content).Result)
+				using (HttpResponseMessage message = _client.PostAsync("/api/User/AddUserSkill", content).Result)
 				{
 					if (!message.IsSuccessStatusCode)
 					{

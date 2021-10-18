@@ -1,82 +1,80 @@
-﻿@model Adopte_Un_Dev_Conso.Models.UserDevModel
+﻿@using System.Linq;
+@model Adopte_Un_Dev_Conso.Models.UserDevModel
 
 @{
-    ViewData["Title"] = "GetDevWithSkills";
+	ViewData["Title"] = "Tableau de bord";
 }
 
-<h1>GetDevWithSkills</h1>
+<h1>Tableau de bord</h1>
 
 <div>
-    <h4>UserDevModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telephone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telephone)
-        </dd>
-    </dl>
+ <hr />
+ <dl class="row">
+  <dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+  </dt>
+  <dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+  </dd>
+  <dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Email)
+  </dt>
+  <dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Email)
+  </dd>
+  <dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Telephone)
+  </dt>
+  <dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Telephone)
+  </dd>
+ </dl>
 </div>
+ <h4>Mes Skills</h4>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-				UserSkillID
-                @*@Html.DisplayNameFor(model => model.UserSkillID)*@
-            </th>
-            <th>
-				UserID
-                @*@Html.DisplayNameFor(model => model.UserID)*@
-            </th>
-            <th>
-				SkillID
-                @*@Html.DisplayNameFor(model => model.SkillID)*@
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.UserSkills) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserSkillID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SkillID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
+ <thead>
+  <tr>
+   <th>
+	Skill
+   </th>
+   <th>
+	Category
+   </th>
+   <th></th>
+  </tr>
+ </thead>
+ <tbody>
+		@foreach (var item in Model.UserSkills)
+		{
+			@foreach (var us in Model.ListSkills)
+			{
+				@if (us.SkillID == item.SkillID)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => us.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => us.CName)
+						</td>
+						<td>
+							@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+							@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+						</td>
+					</tr>
+				}
+			}
+		}
+ </tbody>
 </table>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+	 @if (Model.UserSkills.Count() < 5)
+	{
+            <button class="btn btn-primary mb-2" type="button" value="Redirect" onclick="window.location='@Url.Action("AddUserSkill", "Dev")'" >Create</button>
+	} 
+	else
+	{
+		<button class="btn btn-primary mb-2" type="button" disabled>Create</button>
+	}
 </div>

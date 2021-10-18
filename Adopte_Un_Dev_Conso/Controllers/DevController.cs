@@ -77,5 +77,24 @@ namespace Adopte_Un_Dev_Conso.Controllers
 				return RedirectToAction("Index", "home");
 			}
 		}
+		public IActionResult AddUserSkill()
+		{
+			AddUserSkillModel addUserSkill = new AddUserSkillModel();
+			addUserSkill.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
+			return View(addUserSkill);
+		}
+		[HttpPost]
+		public IActionResult AddUserSkill(AddUserSkillModel form)
+		{
+			form.UserID = Global.UserConnected.UserId;
+			// Si le formulaire est valide
+			if (ModelState.IsValid) // Propriété des controlleurs qui vérifie la validité du formulaire
+			{
+				_devService.InsertUserSkill(form.MapToUserSkill());
+				return RedirectToAction("GetDevWithSkills", "Dev");
+			}
+
+			return View(form);
+		}
 	}
 }
