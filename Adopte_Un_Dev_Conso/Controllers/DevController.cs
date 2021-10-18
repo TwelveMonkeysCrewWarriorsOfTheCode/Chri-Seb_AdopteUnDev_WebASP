@@ -56,6 +56,17 @@ namespace Adopte_Un_Dev_Conso.Controllers
 				UserDevModel userDev = _devService.GetUserById((int)Global.UserConnected.UserId).MapToUserDev();
 				userDev.UserSkills = _devService.GetUserSkillUserId((int)Global.UserConnected.UserId).Select(us => us.MapToUserSkill());
 				userDev.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
+				//foreach (var us in userDev.UserSkills)
+				//{
+				//	foreach (var ls in userDev.ListSkills)
+				//	{
+				//		if (us.SkillID == ls.SkillID)
+				//		{
+				//			userDev.SkillsName.Add(ls.Name);
+				//			userDev.CategoriesNam.Add(ls.CName);
+				//		}
+				//	}
+				//}
 				//userDev.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel()).ToList(); // ToList si foreach
 
 				//return RedirectToAction("GetDevWithSkills", "Dev", userDev);

@@ -37,6 +37,45 @@
     </dl>
 </div>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+				UserSkillID
+                @*@Html.DisplayNameFor(model => model.UserSkillID)*@
+            </th>
+            <th>
+				UserID
+                @*@Html.DisplayNameFor(model => model.UserID)*@
+            </th>
+            <th>
+				SkillID
+                @*@Html.DisplayNameFor(model => model.SkillID)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.UserSkills) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserSkillID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
