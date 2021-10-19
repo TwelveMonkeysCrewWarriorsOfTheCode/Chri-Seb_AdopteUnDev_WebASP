@@ -145,6 +145,10 @@ body {
 		width: auto;
 		display: contents;
 	}
+
+	.a-logout {
+		margin-right: 30px;
+	}
 }
 
 .sidebar-sticky {

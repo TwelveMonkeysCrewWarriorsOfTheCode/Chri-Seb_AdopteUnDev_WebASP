@@ -11,17 +11,17 @@ namespace Adopte_Un_Dev_Conso.Controllers
 {
 	public class SkillController : Controller
 	{
-		private readonly ISkillRepoLibrary _userService;
-		public SkillController(ISkillRepoLibrary service)
+		private readonly ISkillRepoLibrary _skillService;
+		public SkillController(ISkillRepoLibrary skillService)
 		{
-			_userService = service;
+			_skillService = skillService;
 		}
 
 		public IActionResult GetSkills()
 		{
 			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == true)
 			{
-				return View(_userService.GetSkills().Select(d => d.MapToSkillModel()));
+				return View(_skillService.GetSkills().Select(d => d.MapToSkillModel()));
 			}
 			else
 			{

@@ -1,4 +1,6 @@
-﻿namespace Adopte_Un_Dev_Conso.Models
+﻿using System.Collections.Generic;
+
+namespace Adopte_Un_Dev_Conso.Models
 {
 	public class ContractModel
 	{
@@ -9,5 +11,7 @@
 		public int? ClientId { get; set; }
 		public int? DevId { get; set; }
 		public string UName { get; set; }
+		public IEnumerable<NeededSkillsModel> NeededSkills { get; set; }
+		public string NeededSkillsText { get; set; }
 	}
 }

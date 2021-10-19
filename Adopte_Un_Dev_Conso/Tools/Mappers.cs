@@ -100,5 +100,15 @@ namespace Adopte_Un_Dev_Conso.Tools
 				SkillID = us.SkillID
 			};
 		}
+
+		public static NeededSkillsModel MapToNeededSkill(this NeededSkillsModelDAL ns)
+		{
+			return new NeededSkillsModel
+			{
+				NeededSkillID = ns.NeededSkillID,
+				ContractID = ns.ContractID,
+				SkillID = ns.SkillID
+			};
+		}
 	}
 }

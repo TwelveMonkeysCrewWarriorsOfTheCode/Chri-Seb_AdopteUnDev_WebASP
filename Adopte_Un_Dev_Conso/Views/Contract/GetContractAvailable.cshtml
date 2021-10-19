@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Adopte_Un_Dev_Conso.Models.ContractModel>
+﻿@model Adopte_Un_Dev_Conso.Models.ContractWithSkillsModel
 
 @{
     ViewData["Title"] = "Liste des Projets";
@@ -10,24 +10,27 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContractID)
+                ContractID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeadLine)
+                Deadline
             </th>
             <th>
                 Client
             </th>
+            <th>
+                Needed Skills
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.ListContract) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ContractID)
@@ -43,6 +46,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NeededSkillsText)
             </td>
         </tr>
 }

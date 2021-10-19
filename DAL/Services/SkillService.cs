@@ -38,5 +38,20 @@ namespace DAL.Services
 				return JsonConvert.DeserializeObject<IEnumerable<SkillsModelDAL>>(json);
 			}
 		}
+
+		public IEnumerable<NeededSkillsModelDAL> GetNeededSkills(int id)
+		{
+			using (HttpResponseMessage message = _client.GetAsync("/api/Skill/GetSkillContractId/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+
+				string json = message.Content.ReadAsStringAsync().Result;
+
+				return JsonConvert.DeserializeObject<IEnumerable<NeededSkillsModelDAL>>(json);
+			}
+		}
 	}
 }
