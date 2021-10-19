@@ -86,5 +86,32 @@ namespace DAL.Services
 				}
 			}
 		}
+
+		public bool DeleteContract(int id)
+		{
+			using (HttpResponseMessage message = _client.DeleteAsync("api/Contract/DeleteContract/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+				return true;
+			}
+		}
+		public bool UpdateContract(EditContractModelDAL c)
+		{
+			string jsonBody = JsonConvert.SerializeObject(c);
+			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
+			{
+				using (HttpResponseMessage message = _client.PutAsync("api/Contract/UpdateContract", content).Result)
+				{
+					if (!message.IsSuccessStatusCode)
+					{
+						throw new HttpRequestException();
+					}
+					return true;
+				}
+			}
+		}
 	}
 }

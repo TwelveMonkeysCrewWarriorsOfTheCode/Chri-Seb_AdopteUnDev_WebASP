@@ -8,5 +8,6 @@ namespace DAL.Interfaces
 	{
 		public IEnumerable<SkillsModelDAL> GetSkills();
 		public IEnumerable<NeededSkillsModelDAL> GetNeededSkills(int id);
+		public bool AddNeededSkill(AddNeededSkillModelDAL Ns);
 	}
 }

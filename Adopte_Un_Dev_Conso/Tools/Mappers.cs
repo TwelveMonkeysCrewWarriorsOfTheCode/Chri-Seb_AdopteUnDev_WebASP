@@ -120,5 +120,37 @@ namespace Adopte_Un_Dev_Conso.Tools
 				SkillID = l.SkillID
 			};
 		}
+
+		public static AddNeededSkillModelDAL MapToNeededSkill(this AddNeededSkillModel nS)
+		{
+			return new AddNeededSkillModelDAL
+			{
+				ContractID = nS.ContractID,
+				SkillID = nS.SkillID
+			};
+		}
+
+		public static AddContractModelDAL MapToContract(this AddContractModel c)
+		{
+			return new AddContractModelDAL
+			{
+				Description = c.Description,
+				Price = c.Price,
+				DeadLine = c.DeadLine,
+				ClientId = c.ClientId
+			};
+		}
+
+		public static EditContractModelDAL MapToEditContract(this EditContractModel c)
+		{
+			return new EditContractModelDAL
+			{
+				ContractID = c.ContractID,
+				Description = c.Description,
+				Price = c.Price,
+				DeadLine = c.DeadLine,
+				DevId = c.DevId
+			};
+		}
 	}
 }

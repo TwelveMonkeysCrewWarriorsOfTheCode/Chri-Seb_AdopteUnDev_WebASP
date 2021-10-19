@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 using Adopte_Un_Dev_Conso.Models;
 using Adopte_Un_Dev_Conso.Tools;
@@ -112,9 +111,6 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == true)
 			{
 				AddContractModel addContract = new AddContractModel();
-
-				addContract.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
-				addContract.ListNeededSkills = new List<NeededSkillsModel>();
 				return View(addContract);
 			}
 			else
@@ -123,14 +119,40 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			}
 		}
 		[HttpPost]
-		public IActionResult AddContract(AddUserSkillModel form)
+		public IActionResult AddContract(AddContractModel form)
 		{
-			form.UserID = Global.UserConnected.UserId;
+			form.ClientId = Global.UserConnected.UserId;
 			// Si le formulaire est valide
 			if (ModelState.IsValid) // Propriété des controlleurs qui vérifie la validité du formulaire
 			{
-				//_devService.InsertUserSkill(form.MapToUserSkill());
-				return RedirectToAction("GetDevWithSkills", "Dev");
+				_contractService.InsertContract(form.MapToContract());
+
+				return RedirectToAction("GetContractIssuedByClient", "Contract");
+			}
+
+			return View(form);
+		}
+
+		public IActionResult DeleteContract(int id)
+		{
+			if (!_contractService.DeleteContract(id)) return NotFound();
+			return RedirectToAction("GetContractIssuedByClient", "Contract");
+		}
+		public IActionResult EditContract(int id)
+		{
+			EditContractModel editContract = new EditContractModel();
+			editContract.NeededSkills = _skillService.GetNeededSkills(id).Select(us => us.MapToNeededSkill());
+			editContract.ContractID = id;
+			return View(editContract);
+		}
+		[HttpPost]
+		public IActionResult EditContract(EditContractModel form)
+		{
+			// Si le formulaire est valide
+			if (ModelState.IsValid) // Propriété des controlleurs qui vérifie la validité du formulaire
+			{
+				_contractService.UpdateContract(form.MapToEditContract());
+				return RedirectToAction("GetContractIssuedByClient", "Contract");
 			}
 
 			return View(form);

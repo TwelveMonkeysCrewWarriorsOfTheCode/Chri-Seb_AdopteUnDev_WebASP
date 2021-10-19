@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 
 using DAL.Interfaces;
 using DAL.Models;
@@ -52,6 +53,23 @@ namespace DAL.Services
 
 				return JsonConvert.DeserializeObject<IEnumerable<NeededSkillsModelDAL>>(json);
 			}
+		}
+
+		public bool AddNeededSkill(AddNeededSkillModelDAL Ns)
+		{
+			string jsonBody = JsonConvert.SerializeObject(Ns);
+
+			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
+			{
+				using (HttpResponseMessage message = _client.PostAsync("/api/Skill/AddSkill", content).Result)
+				{
+					if (!message.IsSuccessStatusCode)
+					{
+						throw new HttpRequestException();
+					}
+				}
+			}
+			return true;
 		}
 	}
 }
