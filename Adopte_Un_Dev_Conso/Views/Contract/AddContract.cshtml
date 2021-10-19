@@ -1,0 +1,108 @@
+﻿@model Adopte_Un_Dev_Conso.Models.AddContractModel
+
+@{
+	ViewData["Title"] = "Nouveau Contract";
+}
+
+<h1>Nouveau Contract</h1>
+<hr />
+<div class="row">
+ <div class="col-md-4">
+  <form asp-action="AddContract">
+   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+   <div class="form-group">
+	<label asp-for="Description" class="control-label"></label>
+	<input asp-for="Description" class="form-control" />
+	<span asp-validation-for="Description" class="text-danger"></span>
+   </div>
+   <div class="form-group">
+	<label asp-for="Price" class="control-label"></label>
+	<input asp-for="Price" class="form-control" />
+	<span asp-validation-for="Price" class="text-danger"></span>
+   </div>
+   <div class="form-group">
+	<label asp-for="DeadLine" class="control-label"></label>
+	<input asp-for="DeadLine" class="form-control" />
+	<span asp-validation-for="DeadLine" class="text-danger"></span>
+   </div>
+   <div class="form-group">
+	<label asp-for="ClientId" class="control-label"></label>
+	<input asp-for="ClientId" class="form-control" />
+	<span asp-validation-for="ClientId" class="text-danger"></span>
+   </div>
+   <div class="form-group">
+	<label asp-for="DevId" class="control-label"></label>
+	<input asp-for="DevId" class="form-control" />
+	<span asp-validation-for="DevId" class="text-danger"></span>
+   </div>
+
+
+   <div class="form-group">
+	<label class="control-label">Choisissez un Skill</label>
+
+	<div class="container">
+	 <div class="row align-items-start">
+	  <div class="col">
+	   <select class="form-control" id="ListSkills">
+								@foreach (var list in Model.ListSkills)
+								{
+			<option value="@list">@list.CName - @list.Name</option>
+								}
+
+	   </select>
+	  </div>
+	  <div class="col">
+	   <input type="button" value="Add Skill" class="btn btn-primary" onclick="AddToList()"/>
+	  </div>
+	 </div>
+	</div>
+	</div>
+
+
+	<div class="form-group">
+	 <input type="submit" value="Create" class="btn btn-primary" />
+	</div>
+  </form>
+ </div>
+</div>
+
+
+<table class="table" id="ListSkillsContract">
+    <thead>
+        <tr>
+            <th>
+                Skill
+            </th>
+            <th>
+                Category
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ListNeededSkills)
+		{
+			@foreach (var s in Model.ListSkills)
+			{
+				@if (s.SkillID == item.SkillID)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => s.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => s.CName)
+						</td>
+					</tr>
+				}
+			}
+		}
+    </tbody>
+</table>
+
+<div>
+ <a asp-action="Index">Back to List</a>
+</div>
+<script type="text/javascript" scr="js/site.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

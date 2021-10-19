@@ -59,8 +59,8 @@
 							@Html.DisplayFor(modelItem => us.CName)
 						</td>
 						<td>
-							@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-							@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+							@Html.ActionLink("Edit", "EditUserSkill", new { id=item.UserSkillID }) |
+							@Html.ActionLink("Delete", "DeleteUserSkills", new { id=item.UserSkillID })
 						</td>
 					</tr>
 				}

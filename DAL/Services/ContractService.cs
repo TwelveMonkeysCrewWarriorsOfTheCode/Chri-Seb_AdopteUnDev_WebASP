@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 
 using DAL.Interfaces;
 using DAL.Models;
@@ -66,6 +67,23 @@ namespace DAL.Services
 				string json = message.Content.ReadAsStringAsync().Result;
 
 				return JsonConvert.DeserializeObject<IEnumerable<ContractModelDAL>>(json);
+			}
+		}
+
+		public bool InsertContract(AddContractModelDAL c)
+		{
+			string jsonBody = JsonConvert.SerializeObject(c);
+
+			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
+			{
+				using (HttpResponseMessage message = _client.PostAsync("/api/Contract/AddContract", content).Result)
+				{
+					if (!message.IsSuccessStatusCode)
+					{
+						throw new HttpRequestException();
+					}
+					return true;
+				}
 			}
 		}
 	}

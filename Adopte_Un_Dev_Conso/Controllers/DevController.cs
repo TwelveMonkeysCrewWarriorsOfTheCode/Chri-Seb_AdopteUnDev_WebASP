@@ -96,5 +96,31 @@ namespace Adopte_Un_Dev_Conso.Controllers
 
 			return View(form);
 		}
+
+		public IActionResult DeleteUserSkills(int id)
+		{
+			if (!_devService.DeleteUserSkills(id)) return NotFound();
+			return RedirectToAction("GetDevWithSkills", "Dev");
+		}
+		public IActionResult EditUserSkill(int id)
+		{
+			EditUserSkillModel editUserSkill = new EditUserSkillModel();
+			editUserSkill.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
+			editUserSkill.UserSkillID = id;
+			return View(editUserSkill);
+		}
+		[HttpPost]
+		public IActionResult EditUserSkill(EditUserSkillModel form)
+		{
+			form.UserID = Global.UserConnected.UserId;
+			// Si le formulaire est valide
+			if (ModelState.IsValid) // Propriété des controlleurs qui vérifie la validité du formulaire
+			{
+				_devService.UpdateUserSkill(form.MapToUserSkillEdit());
+				return RedirectToAction("GetDevWithSkills", "Dev");
+			}
+
+			return View(form);
+		}
 	}
 }

@@ -110,5 +110,15 @@ namespace Adopte_Un_Dev_Conso.Tools
 				SkillID = ns.SkillID
 			};
 		}
+
+		public static DAL.Models.EditUserSkillDAL MapToUserSkillEdit(this EditUserSkillModel l)
+		{
+			return new DAL.Models.EditUserSkillDAL
+			{
+				UserSkillID = l.UserSkillID,
+				UserID = l.UserID,
+				SkillID = l.SkillID
+			};
+		}
 	}
 }

@@ -129,5 +129,33 @@ namespace DAL.Services
 				return JsonConvert.DeserializeObject<UserDevModelDAL>(json);
 			}
 		}
+
+		public bool DeleteUserSkills(int id)
+		{
+
+			using (HttpResponseMessage message = _client.DeleteAsync("api/User/DeleteUserSkills/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+				return true;
+			}
+		}
+		public bool UpdateUserSkill(EditUserSkillDAL u)
+		{
+			string jsonBody = JsonConvert.SerializeObject(u);
+			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
+			{
+				using (HttpResponseMessage message = _client.PutAsync("api/User/UpdateUserSkill", content).Result)
+				{
+					if (!message.IsSuccessStatusCode)
+					{
+						throw new HttpRequestException();
+					}
+					return true;
+				}
+			}
+		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Adopte_Un_Dev_Conso.Models;
 using Adopte_Un_Dev_Conso.Tools;
@@ -106,8 +107,33 @@ namespace Adopte_Un_Dev_Conso.Controllers
 				return RedirectToAction("Index", "home");
 			}
 		}
+		public IActionResult AddContract()
+		{
+			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == true)
+			{
+				AddContractModel addContract = new AddContractModel();
 
-		// Afficher sur les contrats les NeededSkills
-		// AddContract
+				addContract.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
+				addContract.ListNeededSkills = new List<NeededSkillsModel>();
+				return View(addContract);
+			}
+			else
+			{
+				return RedirectToAction("Index", "home");
+			}
+		}
+		[HttpPost]
+		public IActionResult AddContract(AddUserSkillModel form)
+		{
+			form.UserID = Global.UserConnected.UserId;
+			// Si le formulaire est valide
+			if (ModelState.IsValid) // Propriété des controlleurs qui vérifie la validité du formulaire
+			{
+				//_devService.InsertUserSkill(form.MapToUserSkill());
+				return RedirectToAction("GetDevWithSkills", "Dev");
+			}
+
+			return View(form);
+		}
 	}
 }
