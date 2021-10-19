@@ -82,7 +82,24 @@ namespace Adopte_Un_Dev_Conso.Controllers
 		{
 			if (Global.UserConnected.UserId != null && Global.UserConnected.IsClient == true)
 			{
-				return View(_contractService.GetContractIssuedByClient((int)Global.UserConnected.UserId).Select(d => d.MapToContractModel()));
+				ContractWithSkillsModel contractWithSkillsModel = new ContractWithSkillsModel();
+				contractWithSkillsModel.ListSkills = _skillService.GetSkills().Select(s => s.MapToSkillModel());
+				contractWithSkillsModel.ListContract = _contractService.GetContractIssuedByClient((int)Global.UserConnected.UserId).Select(d => d.MapToContractModel()).ToList(); // ToList si foreach
+
+				foreach (var item in contractWithSkillsModel.ListContract)
+				{
+					item.NeededSkills = _skillService.GetNeededSkills((int)item.ContractID).Select(us => us.MapToNeededSkill());
+					foreach (var text in item.NeededSkills)
+					{
+						var neededSkillText = contractWithSkillsModel.ListSkills
+													.Where(s => s.SkillID == text.SkillID)
+													.Select(s => s.Name)
+													.FirstOrDefault();
+						item.NeededSkillsText += neededSkillText + " ";
+					}
+
+				}
+				return View(contractWithSkillsModel);
 			}
 			else
 			{
