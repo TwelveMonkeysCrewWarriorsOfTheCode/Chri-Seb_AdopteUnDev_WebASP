@@ -36,11 +36,11 @@ namespace Adopte_Un_Dev_Conso.Controllers
 
 			if (connectedUser.IsClient == false)
 			{
-				return RedirectToAction("Index", "Dev");
+				return RedirectToAction("GetDevWithSkills", "Dev");
 			}
 			else
 			{
-				return RedirectToAction("Index", "Client");
+				return RedirectToAction("GetClientById", "Client");
 			}
 
 		}
@@ -72,22 +72,6 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			{
 				return RedirectToAction("Index", "home");
 			}
-		}
-		public IActionResult AddUserSkill()
-		{
-			return View();
-		}
-		[HttpPost]
-		public IActionResult AddUserSkill(AddUserSkillModel form)
-		{
-			// Si le formulaire est valide
-			if (ModelState.IsValid) // Propriété des controlleurs qui vérifie la validité du formulaire
-			{
-				_userService.InsertUserSkill(form.MapToUserSkill());
-				return RedirectToAction("Index", "Dev");
-			}
-
-			return View(form);
 		}
 	}
 }

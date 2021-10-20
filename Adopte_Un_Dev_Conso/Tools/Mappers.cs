@@ -90,5 +90,67 @@ namespace Adopte_Un_Dev_Conso.Tools
 				Telephone = u.Telephone
 			};
 		}
+
+		public static UserSkills MapToUserSkill(this UserSkillsDAL us)
+		{
+			return new UserSkills
+			{
+				UserSkillID = us.UserSkillID,
+				UserID = us.UserID,
+				SkillID = us.SkillID
+			};
+		}
+
+		public static NeededSkillsModel MapToNeededSkill(this NeededSkillsModelDAL ns)
+		{
+			return new NeededSkillsModel
+			{
+				NeededSkillID = ns.NeededSkillID,
+				ContractID = ns.ContractID,
+				SkillID = ns.SkillID
+			};
+		}
+
+		public static DAL.Models.EditUserSkillDAL MapToUserSkillEdit(this EditUserSkillModel l)
+		{
+			return new DAL.Models.EditUserSkillDAL
+			{
+				UserSkillID = l.UserSkillID,
+				UserID = l.UserID,
+				SkillID = l.SkillID
+			};
+		}
+
+		public static AddNeededSkillModelDAL MapToNeededSkill(this AddNeededSkillModel nS)
+		{
+			return new AddNeededSkillModelDAL
+			{
+				ContractID = nS.ContractID,
+				SkillID = nS.SkillID
+			};
+		}
+
+		public static AddContractModelDAL MapToContract(this AddContractModel c)
+		{
+			return new AddContractModelDAL
+			{
+				Description = c.Description,
+				Price = c.Price,
+				DeadLine = c.DeadLine,
+				ClientId = c.ClientId
+			};
+		}
+
+		public static EditContractModelDAL MapToEditContract(this EditContractModel c)
+		{
+			return new EditContractModelDAL
+			{
+				ContractID = c.ContractID,
+				Description = c.Description,
+				Price = c.Price,
+				DeadLine = c.DeadLine,
+				DevId = c.DevId
+			};
+		}
 	}
 }

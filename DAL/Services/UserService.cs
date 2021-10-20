@@ -89,7 +89,7 @@ namespace DAL.Services
 
 			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
 			{
-				using (HttpResponseMessage message = _client.PostAsync("api/User/InsertUserSkill", content).Result)
+				using (HttpResponseMessage message = _client.PostAsync("/api/User/AddUserSkill", content).Result)
 				{
 					if (!message.IsSuccessStatusCode)
 					{
@@ -127,6 +127,34 @@ namespace DAL.Services
 				string json = message.Content.ReadAsStringAsync().Result;
 
 				return JsonConvert.DeserializeObject<UserDevModelDAL>(json);
+			}
+		}
+
+		public bool DeleteUserSkills(int id)
+		{
+
+			using (HttpResponseMessage message = _client.DeleteAsync("api/User/DeleteUserSkills/" + id).Result)
+			{
+				if (!message.IsSuccessStatusCode)
+				{
+					throw new HttpRequestException();
+				}
+				return true;
+			}
+		}
+		public bool UpdateUserSkill(EditUserSkillDAL u)
+		{
+			string jsonBody = JsonConvert.SerializeObject(u);
+			using (HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json"))
+			{
+				using (HttpResponseMessage message = _client.PutAsync("api/User/UpdateUserSkill", content).Result)
+				{
+					if (!message.IsSuccessStatusCode)
+					{
+						throw new HttpRequestException();
+					}
+					return true;
+				}
 			}
 		}
 	}

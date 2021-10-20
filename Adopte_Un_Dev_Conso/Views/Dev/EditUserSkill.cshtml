@@ -1,0 +1,54 @@
+﻿@model Adopte_Un_Dev_Conso.Models.EditUserSkillModel
+
+@{
+    ViewData["Title"] = "Edit Skill";
+}
+
+<h1>Edit Skill</h1>
+
+@*<h4>AddUserSkill</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditUserSkill">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                @*<label asp-for="UserSkillId" class="control-label"></label>*@
+                <input type="HIDDEN" asp-for="UserSkillID" class="form-control" />
+                <span asp-validation-for="UserSkillID" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="UserId" class="control-label"></label>
+            <input id="UserId" asp-for="UserId" class="form-control" />
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SkillId" class="control-label"></label>
+            <input asp-for="SkillId" class="form-control" />
+            <span asp-validation-for="SkillId" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label class="control-label">Choisissez un Skill</label>
+                <select asp-for="SkillID" class="form-control">
+                    @foreach (var list in Model.ListSkills)
+                    {
+                        <option value="@list.SkillID">@list.CName - @list.Name</option>
+                    }
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetDevWithSkills">Annuler</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

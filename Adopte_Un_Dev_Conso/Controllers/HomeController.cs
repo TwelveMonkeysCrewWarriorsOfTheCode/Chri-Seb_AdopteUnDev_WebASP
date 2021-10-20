@@ -22,11 +22,11 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			{
 				if (Global.UserConnected.IsClient == false)
 				{
-					return RedirectToAction("Index", "Dev");
+					return RedirectToAction("GetDevWithSkills", "Dev");
 				}
 				else if (Global.UserConnected.IsClient == true)
 				{
-					return RedirectToAction("Index", "Client");
+					return RedirectToAction("GetClientById", "Client");
 				}
 			}
 			return View();

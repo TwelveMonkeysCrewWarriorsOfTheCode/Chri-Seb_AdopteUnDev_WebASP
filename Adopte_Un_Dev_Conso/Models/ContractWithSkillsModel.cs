@@ -2,10 +2,9 @@
 
 namespace Adopte_Un_Dev_Conso.Models
 {
-	public class AddUserSkillModel
+	public class ContractWithSkillsModel
 	{
-		public int? UserID { get; set; }
-		public int? SkillID { get; set; }
+		public IEnumerable<ContractModel> ListContract { get; set; }
 		public IEnumerable<SkillModel> ListSkills { get; set; }
 	}
 }

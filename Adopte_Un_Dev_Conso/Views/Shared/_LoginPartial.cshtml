@@ -11,7 +11,7 @@
 	  <li class="nav-item">
 	   <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 	
-		<span type="button" class="nav-link btn btn-link px-3 a-Clickable" value="Redirect" onclick="window.location='@Url.Action("Logout", "Home")'">
+		<span type="button" class="nav-link btn btn-link px-3 a-Clickable a-logout" value="Redirect" onclick="window.location='@Url.Action("Logout", "Home")'">
 		 Logout
 		</span>
 	   </form>

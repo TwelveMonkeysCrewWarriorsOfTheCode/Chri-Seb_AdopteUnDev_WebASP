@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Adopte_Un_Dev_Conso.Models.ContractModel>
+﻿@model Adopte_Un_Dev_Conso.Models.ContractWithSkillsModel
 
 @{
     ViewData["Title"] = "Liste de mes Contrats";
@@ -7,31 +7,34 @@
 <h1>Liste de mes Contrats</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-primary mb-2" type="button" value="Redirect" onclick="window.location='@Url.Action("AddContract", "Contract")'">Create</button>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContractID)
+                ContractID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeadLine)
+                Deadline
             </th>
             <th>
-                Dev
+                Client
+            </th>
+            <th>
+                Needed Skills
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.ListContract) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ContractID)
@@ -49,9 +52,14 @@
                 @Html.DisplayFor(modelItem => item.UName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.NeededSkillsText)
+            </td>
+            <td>
+					<a class="btn btn-warning" asp-action="EditContract" asp-route-id="@item.ContractID" asp-route-de="@item.Description" asp-route-pr="@item.Price" asp-route-dl="@item.DeadLine" asp-route-nSt="@item.NeededSkillsText">Edit</a>
+					<a class="btn btn-danger" asp-action="DeleteContract" asp-route-id="@item.ContractID">Delete</a>
+
+                @*@Html.ActionLink("Edit", "EditContract", new { id=item.ContractID, de=item.Description, pr=item.Price, dl=item.DeadLine, nSt=item.NeededSkillsText }) |
+                @Html.ActionLink("Delete", "DeleteContract", new { id=item.ContractID })*@
             </td>
         </tr>
 }
