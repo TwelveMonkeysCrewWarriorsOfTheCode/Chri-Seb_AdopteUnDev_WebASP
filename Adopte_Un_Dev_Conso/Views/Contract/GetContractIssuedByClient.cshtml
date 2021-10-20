@@ -55,8 +55,11 @@
                 @Html.DisplayFor(modelItem => item.NeededSkillsText)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditContract", new { id=item.ContractID }) |
-                @Html.ActionLink("Delete", "DeleteContract", new { id=item.ContractID })
+					<a class="btn btn-warning" asp-action="EditContract" asp-route-id="@item.ContractID" asp-route-de="@item.Description" asp-route-pr="@item.Price" asp-route-dl="@item.DeadLine" asp-route-nSt="@item.NeededSkillsText">Edit</a>
+					<a class="btn btn-danger" asp-action="DeleteContract" asp-route-id="@item.ContractID">Delete</a>
+
+                @*@Html.ActionLink("Edit", "EditContract", new { id=item.ContractID, de=item.Description, pr=item.Price, dl=item.DeadLine, nSt=item.NeededSkillsText }) |
+                @Html.ActionLink("Delete", "DeleteContract", new { id=item.ContractID })*@
             </td>
         </tr>
 }

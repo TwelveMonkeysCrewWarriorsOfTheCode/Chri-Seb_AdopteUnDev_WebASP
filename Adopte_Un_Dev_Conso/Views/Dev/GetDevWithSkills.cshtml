@@ -59,8 +59,10 @@
 							@Html.DisplayFor(modelItem => us.CName)
 						</td>
 						<td>
-							@Html.ActionLink("Edit", "EditUserSkill", new { id=item.UserSkillID }) |
-							@Html.ActionLink("Delete", "DeleteUserSkills", new { id=item.UserSkillID })
+							<a class="btn btn-warning" asp-action="EditUserSkill" asp-route-id="@item.UserSkillID">Edit</a>
+					<a class="btn btn-danger" asp-action="DeleteUserSkills" asp-route-id="@item.UserSkillID">Delete</a>
+							@*@Html.ActionLink("Edit", "EditUserSkill", new { id=item.UserSkillID }) |
+							@Html.ActionLink("Delete", "DeleteUserSkills", new { id=item.UserSkillID })*@
 						</td>
 					</tr>
 				}

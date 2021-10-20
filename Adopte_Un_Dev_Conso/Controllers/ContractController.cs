@@ -138,11 +138,15 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			if (!_contractService.DeleteContract(id)) return NotFound();
 			return RedirectToAction("GetContractIssuedByClient", "Contract");
 		}
-		public IActionResult EditContract(int id)
+		public IActionResult EditContract(int id, string de, int pr, string dl, string nSt)
 		{
 			EditContractModel editContract = new EditContractModel();
 			editContract.NeededSkills = _skillService.GetNeededSkills(id).Select(us => us.MapToNeededSkill());
 			editContract.ContractID = id;
+			editContract.Description = de;
+			editContract.Price = pr;
+			editContract.DeadLine = dl;
+			editContract.NeededSkillsText = nSt;
 			return View(editContract);
 		}
 		[HttpPost]

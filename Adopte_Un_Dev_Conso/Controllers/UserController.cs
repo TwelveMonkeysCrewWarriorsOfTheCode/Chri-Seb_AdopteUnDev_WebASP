@@ -40,7 +40,7 @@ namespace Adopte_Un_Dev_Conso.Controllers
 			}
 			else
 			{
-				return RedirectToAction("Index", "Client");
+				return RedirectToAction("GetClientById", "Client");
 			}
 
 		}
